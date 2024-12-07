@@ -1,20 +1,25 @@
 const display = document.getElementById("display");
+let hasError = false;
 
-function appendtoDisplay(input) {
-    if (display.value === "Error") {
-        clearDisplay(); 
+function appendToDisplay(input) {
+    if (hasError) {
+        display.value = "";
+        hasError = false;
     }
-    display.value += input; 
+    display.value += input;
 }
 
 function clearDisplay() {
-    display.value = ""; 
+    display.value = "";
+    hasError = false;
 }
 
 function calculate() {
     try {
         display.value = eval(display.value);
+        hasError = false;
     } catch (error) {
         display.value = "Error";
+        hasError = true;
     }
 }
